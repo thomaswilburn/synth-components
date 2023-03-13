@@ -45,4 +45,10 @@ Notes/To-do
 * Add MIDI support
 * Start adding controls in slot placeholders
 * Shared stylesheet for component setup
-* 
+* Add utility nodes
+  - LFO with a custom range, not just -1 to 1
+  - Sample playback
+  - Live audio input
+  - KAOSS pad
+  - Random square wave and/or signal gating
+  - MIDI trigger from signal
