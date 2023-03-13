@@ -5,10 +5,19 @@ class AmpTile extends BaseTile {
 GAIN NODE
 <slot></slot>
   `;
+  static autoParamSlots = ["gain"];
 
   constructor() {
     super();
     this.audioNode = new GainNode(context);
+  }
+
+  static observedAttributes = ["gain"];
+  attributeChangedCallback(attr, was, value) {
+    switch (attr) {
+      case "gain":
+        this.audioNode.gain.value = value;
+    }
   }
 
 }

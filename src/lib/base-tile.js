@@ -13,14 +13,25 @@ export class BaseTile extends HTMLElement {
         this[method] = this[method].bind(this);
       }
     }
+
     this.whenSlotChanged = this.whenSlotChanged.bind(this);
+    
+    var root = this.attachShadow({ mode: "open" });
     if (def.template) {
-      this.attachShadow({ mode: "open" });
-      this.shadowRoot.innerHTML = def.template;
-      var slots = this.shadowRoot.querySelectorAll("slot");
-      for (var slot of slots) {
-        slot.addEventListener("slotchange", this.whenSlotChanged);
+      root.innerHTML = def.template;
+    }
+
+    if (def.autoParamSlots) {
+      for (var param of def.autoParamSlots) {
+        var slot = document.createElement("slot");
+        slot.name = param;
+        root.appendChild(slot);
       }
+    }
+
+    var slots = root.querySelectorAll("slot");
+    for (var slot of slots) {
+      slot.addEventListener("slotchange", this.whenSlotChanged);
     }
   }
 
@@ -49,13 +60,13 @@ export class BaseTile extends HTMLElement {
     var slot = e.target;
     var children = slot.assignedElements().filter(c => c instanceof BaseTile);
     var dest = this.audioNode;
-    if (slot.dataset.param) {
-      var param = this.audioNode[slot.dataset.param];
+    if (slot.name) {
+      var param = this.audioNode[slot.name];
       if (param) dest = param;
     }
     // connect children to this node
     for (var child of children) {
-      child.connectAudioTo(this.audioNode);
+      child.connectAudioTo(dest);
     }
   }
 

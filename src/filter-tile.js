@@ -6,13 +6,14 @@ FILTER
 <slot></slot>
   `;
 
-  static observedAttributes = ["filtertype"]
+  static autoParamSlots = ["frequency", "Q"];
 
   constructor() {
     super();
     this.audioNode = new BiquadFilterNode(context);
   }
 
+  static observedAttributes = ["filtertype"];
   attributeChangedCallback(attr, was, value) {
     switch (attr) {
       case "filtertype":
