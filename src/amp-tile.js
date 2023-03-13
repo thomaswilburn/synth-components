@@ -22,4 +22,4 @@ GAIN NODE
 
 }
 
-window.customElements.define("amp-tile", AmpTile);
+window.customElements.define("gain-tile", AmpTile);

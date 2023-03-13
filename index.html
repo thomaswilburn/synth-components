@@ -7,17 +7,19 @@
   <body>
 
     <audio-out>
-      <amp-tile gain=".4">
-        <adsr-tile decay=".1" sustain=".3" release=1>
+      <gain-tile gain=".4">
+        <gain-tile gain="0">
+          <adsr-tile decay=".1" sustain=".3" release=1 slot="gain">
+          </adsr-tile>
           <osc-tile frequency=220 wavetype="triangle"></osc-tile>
-        </adsr-tile>
+        </gain-tile>
         <filter-tile frequency="120">
-          <amp-tile gain="50" slot="frequency">
+          <gain-tile gain="50" slot="frequency">
             <osc-tile frequency=3></osc-tile>
-          </amp-tile>
+          </gain-tile>
           <noise-tile></noise-tile>
         </filter-tile>
-      </amp-tile>
+      </gain-tile>
     </audio-out>
 
     <script type="module">

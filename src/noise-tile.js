@@ -9,7 +9,7 @@ NOISE
     super();
     var { sampleRate } = context;
     var length = 13 * sampleRate;
-    var samples = Float32Array.from({ length: 13 * context.sampleRate }, () => Math.random());
+    var samples = Float32Array.from({ length: 13 * context.sampleRate }, () => Math.random() * 2 - 1);
     var buffer = new AudioBuffer({ length, sampleRate });
     buffer.copyToChannel(samples, 0);
     this.audioNode = new AudioBufferSourceNode(context, { buffer, loop: true });
