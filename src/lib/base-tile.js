@@ -3,6 +3,7 @@ export var context = new AudioContext();
 export class BaseTile extends HTMLElement {
 
   #initialized = false;
+  #connectedTo = undefined;
 
   constructor() {
     super();
@@ -34,11 +35,14 @@ export class BaseTile extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.audioNode.disconnect();
+    if (!this.parentElement) this.audioNode.disconnect();
   }
 
   connectAudioTo(destination) {
+    if (this.#connectedTo == destination) return;
+    this.audioNode.disconnect(this.#connectedTo);
     this.audioNode.connect(destination);
+    this.#connectedTo = destination;
   }
 
   whenSlotChanged(e) {

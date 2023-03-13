@@ -4,11 +4,11 @@ export class EnvelopeNode {
   // levels
   initial = 0;
   peak = 1;
-  sustain = .5;
+  sustain = .3;
 
   // timing
-  attack = .1;
-  decay = .1;
+  attack = .05;
+  decay = .2;
   release = .2;
 
   constructor() {

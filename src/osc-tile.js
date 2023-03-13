@@ -6,6 +6,16 @@ class OscTile extends BaseTile {
     this.audioNode = new OscillatorNode(context);
     this.audioNode.start();
   }
+
+  static observedAttributes = ["wavetype"];
+
+  attributeChangedCallback(attr, was, value) {
+    switch (attr) {
+      case "wavetype":
+        this.audioNode.type = value;
+        break;
+    }
+  }
 }
 
 window.customElements.define("osc-tile", OscTile);

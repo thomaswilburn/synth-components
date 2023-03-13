@@ -7,9 +7,10 @@
   <body>
 
     <audio-out>
-      <adsr-tile></adsr-tile>
       <amp-tile gain=".4">
-        <!-- <osc-tile></osc-tile> -->
+        <adsr-tile decay=".1" sustain=".3" release=1>
+          <osc-tile frequency=220 wavetype="triangle"></osc-tile>
+        </adsr-tile>
         <filter-tile frequency="120">
           <noise-tile></noise-tile>
         </filter-tile>
