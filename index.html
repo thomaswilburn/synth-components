@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Synth Components Demo</title>
+  </head>
+  <body>
+
+    <audio-out>
+      <adsr-tile></adsr-tile>
+      <amp-tile gain=".4">
+        <!-- <osc-tile></osc-tile> -->
+        <filter-tile frequency="120">
+          <noise-tile></noise-tile>
+        </filter-tile>
+      </amp-tile>
+    </audio-out>
+
+    <script type="module">
+      import "./src/audio-out.js";
+      import "./src/amp-tile.js";
+      import "./src/osc-tile.js";
+      import "./src/noise-tile.js";
+      import "./src/filter-tile.js";
+      import "./src/adsr-tile.js";
+    </script>
+  </body>
+</html>
