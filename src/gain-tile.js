@@ -2,18 +2,14 @@ import { context, BaseTile } from "./lib/base-tile.js";
 
 class AmpTile extends BaseTile {
   static template = `
-<fieldset>
-  <legend>Gain</legend>
-  <slot name="gain">
-    <label>Volume</label>
-    <input type="number" as="gain">
-  </slot>
-</fieldset>
+<h3>Gain</h3>
 <fieldset class="inputs">
   <legend>&raquo;</legend>
   <slot class="inputs"></slot>
 </fieldset>
   `;
+
+  static autoParamSlots = ["gain"]
 
   constructor() {
     super();
@@ -25,7 +21,6 @@ class AmpTile extends BaseTile {
     switch (attr) {
       case "gain":
         this.audioNode.gain.value = value;
-        this.elements.gain.value = value;
     }
   }
 

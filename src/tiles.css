@@ -2,6 +2,14 @@
   display: block;
 }
 
+h3 {
+  margin: 0 0 4px;
+  padding: 4px;
+  text-transform: uppercase;
+  border-bottom: 2px dotted black;
+  width: auto;
+}
+
 fieldset {
   margin-top: 8px;
 }

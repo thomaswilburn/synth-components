@@ -2,25 +2,18 @@ import { context, BaseTile } from "./lib/base-tile.js";
 
 class FilterTile extends BaseTile {
   static template = `
-<fieldset>
-  <legend>Filter</legend>
-  <slot name="frequency">
-    <label for="f-input">Frequency</label>
-    <input type="number" as="frequency">
-  </slot>
-</fieldset>
+<h3>Filter</h3>
 <fieldset class="inputs">
   <legend>&raquo;</legend>
   <slot></slot>
 </fieldset>
   `;
 
-  static autoParamSlots = ["Q"];
+  static autoParamSlots = ["frequency", "Q"];
 
   constructor() {
     super();
     this.audioNode = new BiquadFilterNode(context);
-    this.elements.frequency.addEventListener("input", e => this.audioNode.frequency.value = e.target.value);
   }
 
   static observedAttributes = ["filtertype", "frequency"];
@@ -32,7 +25,6 @@ class FilterTile extends BaseTile {
 
       case "frequency":
         this.audioNode.frequency.value = value;
-        this.elements.frequency.value = value;
         break;
     }
   }

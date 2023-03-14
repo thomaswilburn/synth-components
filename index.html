@@ -12,22 +12,20 @@
   <body>
 
     <audio-out>
-      <gain-tile gain="1">
-        <gain-tile gain="0">
-          <adsr-tile decay=".2" sustain=".3" release=".5" slot="gain">
-          </adsr-tile>
-          <osc-tile frequency=220 wavetype="triangle"></osc-tile>
-        </gain-tile>
-        <filter-tile frequency="120">
-          <noise-tile></noise-tile>
-        </filter-tile>
-        <filter-tile frequency="120">
-          <gain-tile gain="20" slot="frequency">
-            <osc-tile frequency=".73"></osc-tile>
-          </gain-tile>
-          <noise-tile></noise-tile>
-        </filter-tile>
+      <gain-tile gain="0">
+        <adsr-tile decay=".2" sustain=".3" release=".5" slot="gain">
+        </adsr-tile>
+        <osc-tile frequency=220 wavetype="triangle"></osc-tile>
       </gain-tile>
+      <filter-tile frequency="180">
+        <noise-tile></noise-tile>
+      </filter-tile>
+      <filter-tile frequency="120">
+        <gain-tile gain="20" slot="frequency">
+          <osc-tile frequency=".73"></osc-tile>
+        </gain-tile>
+        <noise-tile></noise-tile>
+      </filter-tile>
     </audio-out>
 
     <script type="module">
