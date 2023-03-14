@@ -1,10 +1,6 @@
 import { context, BaseTile } from "./lib/base-tile.js";
 
 class NoiseTile extends BaseTile {
-  static template = `
-<pre>== NOISE ==</pre>
-  `;
-
   constructor() {
     super();
     var { sampleRate } = context;

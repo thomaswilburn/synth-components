@@ -23,26 +23,11 @@ export class BaseTile extends HTMLElement {
     
     var root = this.attachShadow({ mode: "open" });
     if (def.template) {
-      root.innerHTML = `
-      <link rel="stylesheet" href="src/tiles.css">
-      ${def.template}
-      `;
+      root.innerHTML = def.template;
     }
 
     if (def.autoParamSlots) {
-      var parent = root.querySelector("fieldset") || root;
-      var reference = parent.querySelector("slot");
-      parent.insertBefore(
-        dom("fieldset.params", [
-          dom("legend.params", "&laquo; params"),
-          ...def.autoParamSlots.map(name => dom(
-            "label.params", [
-              name,
-              dom("slot", { name }, " (from source)")
-            ])
-        )]), reference
-      );
-      // root.append(...def.autoParamSlots.map(name => dom("slot", { name })));
+      root.append(...def.autoParamSlots.map(name => dom("slot", { name })));
     }
 
     var slots = root.querySelectorAll("slot");

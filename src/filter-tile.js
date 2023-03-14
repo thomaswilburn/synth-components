@@ -1,12 +1,7 @@
 import { context, BaseTile } from "./lib/base-tile.js";
 
 class FilterTile extends BaseTile {
-  static template = `
-<fieldset>
-  <legend>Filter</legend>
-  <slot></slot>
-</fieldset>
-  `;
+  static template = `<slot></slot>`;
 
   static autoParamSlots = ["frequency", "Q"];
 

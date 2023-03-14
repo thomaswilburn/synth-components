@@ -41,15 +41,11 @@ Notes/To-do
 -----------
 
 * Add a constant source node
-* Inputs are bad, let's improve them or remove them
-* Parameters should get their own fieldset or labelling element, so that slotted signals don't obliterate the label
 * Build out the aux sends and returns
 * Add MIDI support
-* Shared stylesheet for component setup
 * Add utility nodes
   - LFO with a custom range, not just -1 to 1
   - Sample playback
   - Live audio input
-  - KAOSS pad
   - Random square wave and/or signal gating
   - MIDI trigger from signal

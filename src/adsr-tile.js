@@ -2,11 +2,6 @@ import { context, BaseTile } from "./lib/base-tile.js";
 import { EnvelopeNode } from "./lib/envelope-node.js";
 
 class ADSRTile extends BaseTile {
-  static template = `
-<fieldset>
-  <legend>Envelope</legend>
-</fieldset>
-  `;
 
   constructor() {
     super();

@@ -1,11 +1,6 @@
 import { context, BaseTile } from "./lib/base-tile.js";
 
 class OscTile extends BaseTile {
-  static template = `
-<fieldset>
-  <legend>Oscillator</legend>
-</fieldset>
-  `;
   static autoParamSlots = ["frequency"];
 
   constructor() {

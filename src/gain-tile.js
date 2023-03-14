@@ -1,12 +1,7 @@
 import { context, BaseTile } from "./lib/base-tile.js";
 
 class AmpTile extends BaseTile {
-  static template = `
-<fieldset>
-  <legend>Gain</legend>
-  <slot></slot>
-</fieldset>
-  `;
+  static template = `<slot></slot>`;
 
   static autoParamSlots = ["gain"]
 
