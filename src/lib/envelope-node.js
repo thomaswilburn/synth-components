@@ -7,9 +7,9 @@ export class EnvelopeNode {
   sustain = .3;
 
   // timing
-  attack = .05;
+  attack = .1;
   decay = .2;
-  release = .2;
+  release = .5;
 
   constructor() {
     this.constant = new ConstantSourceNode(context);
@@ -26,21 +26,21 @@ export class EnvelopeNode {
   }
 
   start() {
-    this.cancel();
     var now = context.currentTime;
     var { offset } = this.constant;
-    offset.value = this.initial;
+    offset.cancelScheduledValues(0);
+    offset.setValueAtTime(this.initial, now);
+    console.log(offset.value);
     offset.linearRampToValueAtTime(this.peak, now + this.attack);
     offset.setTargetAtTime(this.sustain, now + this.attack, this.decay);
   }
 
   stop() {
-    var release = context.currentTime + this.release;
-    this.constant.offset.linearRampToValueAtTime(0, release);
-  }
-
-  cancel() {
-    this.constant.offset.cancelScheduledValues(0);
-    this.constant.offset.value = 0;
+    var { offset } = this.constant;
+    var value = offset.value;
+    // FF doesn't support cancelAndHoldAtTime()
+    offset.cancelScheduledValues(context.currentTime);
+    offset.setValueAtTime(value, 0);
+    offset.setTargetAtTime(0, 0, this.release);
   }
 }

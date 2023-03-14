@@ -3,8 +3,7 @@ import { EnvelopeNode } from "./lib/envelope-node.js";
 
 class ADSRTile extends BaseTile {
   static template = `
-ADSR!
-<slot></slot>
+<pre>== ADSR ==</pre>
   `;
 
   constructor() {

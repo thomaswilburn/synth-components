@@ -15,10 +15,16 @@ export class BaseTile extends HTMLElement {
     }
 
     this.whenSlotChanged = this.whenSlotChanged.bind(this);
+    this.whenSlotInput = this.whenSlotInput.bind(this);
+
+    this.elements = {};
     
     var root = this.attachShadow({ mode: "open" });
     if (def.template) {
-      root.innerHTML = def.template;
+      root.innerHTML = `
+      <link rel="stylesheet" href="src/tiles.css">
+      ${def.template}
+      `;
     }
 
     if (def.autoParamSlots) {
@@ -32,6 +38,12 @@ export class BaseTile extends HTMLElement {
     var slots = root.querySelectorAll("slot");
     for (var slot of slots) {
       slot.addEventListener("slotchange", this.whenSlotChanged);
+      slot.addEventListener("input", this.whenSlotInput);
+    }
+
+    var assigned = root.querySelectorAll("[as]");
+    for (var element of assigned) {
+      this.elements[element.getAttribute("as")] = element;
     }
   }
 
@@ -68,6 +80,14 @@ export class BaseTile extends HTMLElement {
     for (var child of children) {
       child.connectAudioTo(dest);
     }
+  }
+
+  whenSlotInput(e) {
+    e.stopPropagation();
+    var input = e.target;
+    var slot = e.currentTarget;
+    var param = this.audioNode[slot.name];
+    if (param) param.value = input.valueAsNumber;
   }
 
 }

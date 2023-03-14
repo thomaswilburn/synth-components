@@ -2,8 +2,14 @@ import { context, BaseTile } from "./lib/base-tile.js";
 
 class AudioOut extends BaseTile {
   static template = `
-<button class="resume">Start audio</button>
-<slot></slot>
+<fieldset>
+  <legend>Synthesizer</legend>
+  <button class="resume">Start audio</button>
+</fieldset>
+<fieldset class="inputs">
+  <legend>&raquo;</legend>
+  <slot></slot>
+</fieldset>
   `
 
   constructor() {

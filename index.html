@@ -3,19 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>Synth Components Demo</title>
+    <style>
+:root {
+  font-family: sans-serif;
+}
+    </style>
   </head>
   <body>
 
     <audio-out>
-      <gain-tile gain=".4">
+      <gain-tile gain="1">
         <gain-tile gain="0">
-          <adsr-tile decay=".1" sustain=".3" release=1 slot="gain">
+          <adsr-tile decay=".2" sustain=".3" release=".5" slot="gain">
           </adsr-tile>
           <osc-tile frequency=220 wavetype="triangle"></osc-tile>
         </gain-tile>
         <filter-tile frequency="120">
-          <gain-tile gain="50" slot="frequency">
-            <osc-tile frequency=3></osc-tile>
+          <noise-tile></noise-tile>
+        </filter-tile>
+        <filter-tile frequency="120">
+          <gain-tile gain="20" slot="frequency">
+            <osc-tile frequency=".73"></osc-tile>
           </gain-tile>
           <noise-tile></noise-tile>
         </filter-tile>
@@ -24,7 +32,7 @@
 
     <script type="module">
       import "./src/audio-out.js";
-      import "./src/amp-tile.js";
+      import "./src/gain-tile.js";
       import "./src/osc-tile.js";
       import "./src/noise-tile.js";
       import "./src/filter-tile.js";
