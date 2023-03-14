@@ -3,7 +3,9 @@ import { EnvelopeNode } from "./lib/envelope-node.js";
 
 class ADSRTile extends BaseTile {
   static template = `
-<pre>== ADSR ==</pre>
+<fieldset>
+  <legend>Envelope</legend>
+</fieldset>
   `;
 
   constructor() {

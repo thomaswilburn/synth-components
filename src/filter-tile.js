@@ -2,9 +2,8 @@ import { context, BaseTile } from "./lib/base-tile.js";
 
 class FilterTile extends BaseTile {
   static template = `
-<h3>Filter</h3>
-<fieldset class="inputs">
-  <legend>&raquo;</legend>
+<fieldset>
+  <legend>Filter</legend>
   <slot></slot>
 </fieldset>
   `;

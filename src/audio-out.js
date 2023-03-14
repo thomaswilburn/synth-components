@@ -5,9 +5,6 @@ class AudioOut extends BaseTile {
 <fieldset>
   <legend>Synthesizer</legend>
   <button class="resume">Start audio</button>
-</fieldset>
-<fieldset class="inputs">
-  <legend>&raquo;</legend>
   <slot></slot>
 </fieldset>
   `

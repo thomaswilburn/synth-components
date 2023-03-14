@@ -2,10 +2,9 @@ import { context, BaseTile } from "./lib/base-tile.js";
 
 class AmpTile extends BaseTile {
   static template = `
-<h3>Gain</h3>
-<fieldset class="inputs">
-  <legend>&raquo;</legend>
-  <slot class="inputs"></slot>
+<fieldset>
+  <legend>Gain</legend>
+  <slot></slot>
 </fieldset>
   `;
 

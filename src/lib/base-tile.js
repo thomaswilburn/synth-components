@@ -1,3 +1,5 @@
+import dom from "./dom.js";
+
 export var context = new AudioContext();
 
 export class BaseTile extends HTMLElement {
@@ -28,11 +30,19 @@ export class BaseTile extends HTMLElement {
     }
 
     if (def.autoParamSlots) {
-      for (var param of def.autoParamSlots) {
-        var slot = document.createElement("slot");
-        slot.name = param;
-        root.appendChild(slot);
-      }
+      var parent = root.querySelector("fieldset") || root;
+      var reference = parent.querySelector("slot");
+      parent.insertBefore(
+        dom("fieldset.params", [
+          dom("legend.params", "&laquo; params"),
+          ...def.autoParamSlots.map(name => dom(
+            "label.params", [
+              name,
+              dom("slot", { name }, " (from source)")
+            ])
+        )]), reference
+      );
+      // root.append(...def.autoParamSlots.map(name => dom("slot", { name })));
     }
 
     var slots = root.querySelectorAll("slot");
