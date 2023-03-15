@@ -1,4 +1,5 @@
-import { context, BaseTile } from "./lib/base-tile.js";
+import context from "./lib/audio-context.js";
+import { BaseTile } from "./lib/base-tile.js";
 
 class DelayTile extends BaseTile {
   
@@ -7,9 +8,12 @@ class DelayTile extends BaseTile {
     this.audioNode = new DelayNode(context);
   }
 
-  static observedAttributes = ["time"];
+  static observedAttributes = [...BaseTile.observedAttributes, "time"];
   attributeChangedCallback(attr, was, value) {
-    this.audioNode.delayTime.value = value * 1;
+    super.attributeChangedCallback(attr, was, value);
+    if (attr == "time") {
+      this.audioNode.delayTime.value = value * 1;
+    }
   }
 }
 

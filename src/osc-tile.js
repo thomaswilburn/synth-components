@@ -1,4 +1,5 @@
-import { context, BaseTile } from "./lib/base-tile.js";
+import context from "./lib/audio-context.js";
+import { BaseTile } from "./lib/base-tile.js";
 
 class OscTile extends BaseTile {
   static autoParamSlots = ["frequency", "detune"];
@@ -10,8 +11,9 @@ class OscTile extends BaseTile {
     this.audioNode.start();
   }
 
-  static observedAttributes = ["wavetype", "frequency"];
+  static observedAttributes = [...BaseTile.observedAttributes, "wavetype", "frequency"];
   attributeChangedCallback(attr, was, value) {
+    super.attributeChangedCallback(attr, was, value);
     switch (attr) {
       case "wavetype":
         this.audioNode.type = value;

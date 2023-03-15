@@ -1,10 +1,9 @@
 import dom from "./dom.js";
-
-export var context = new AudioContext();
+import context from "./audio-context.js";
+import mixer from "./aux-mixer.js";
 
 export class BaseTile extends HTMLElement {
 
-  #initialized = false;
   #connectedTo = undefined;
 
   constructor() {
@@ -38,16 +37,6 @@ export class BaseTile extends HTMLElement {
     }
   }
 
-  connectedCallback() {
-    if (this.#initialized) return;
-    for (var { name, value } of this.attributes) {
-      if (this.audioNode[name] instanceof AudioParam) {
-        this.audioNode[name].value = value;
-      }
-    }
-    this.#initialized = true;
-  }
-
   disconnectedCallback() {
     if (!this.parentElement) this.audioNode.disconnect();
   }
@@ -59,6 +48,18 @@ export class BaseTile extends HTMLElement {
     }
     this.audioNode.connect(destination);
     this.#connectedTo = destination;
+  }
+
+  static observedAttributes = ["send"];
+  attributeChangedCallback(attr, was, value) {
+    switch (attr) {
+      case "send":
+        if (was) {
+          mixer.disconnectSend(was, this.audioNode);
+        }
+        mixer.connectSend(value, this.audioNode);
+        break;
+    }
   }
 
   whenSlotChanged(e) {

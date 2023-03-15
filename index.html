@@ -23,25 +23,24 @@ audio-out {
     <audio-out>
 
       <!-- monophonic keyboard synth -->
-      <aux-send bus="delay">
-        <gain-tile gain="0"> 
-          <!-- set volume from the O2 volume slider -->
-          <midi-vca slot="gain" midicontroller="24" value="1"></midi-vca>
-          <envelope-tile attack="0" decay=".05" sustain=".4" release=".5">
+      <gain-tile gain="0" send="delay"> 
+        <!-- set volume from the O2 volume slider -->
+        <midi-vca slot="gain" midicontroller="24" value="1"></midi-vca>
+        <!-- filter, controlled by O2 knob C2 -->
+        <filter-tile type="bandpass">
+          <midi-vca slot="frequency" value="800" min="100" max="1600" midicontroller="17"></midi-vca>
           <!-- envelope automatically cues on MIDI channel 0 -->
-            <!-- filter, controlled by O2 knob C2 -->
-            <filter-tile type="bandpass">
-              <midi-vca slot="frequency" value="800" min="100" max="1600" midicontroller="17"></midi-vca>
-              <!-- actual oscillator -->
-              <osc-tile wavetype="sawtooth">
-                <!-- pitch and frequency set from keyboard -->
-                <midi-pitchbend slot="detune"></midi-pitchbend>
-                <midi-note-frequency slot="frequency"></midi-note-frequency>
-              </osc-tile>
-            </filter-tile>
+          <envelope-tile attack="0" decay=".05" sustain=".4" release=".5">
+            <!-- actual oscillator -->
+            <osc-tile wavetype="sawtooth">
+              <!-- pitch and frequency set from keyboard -->
+              <midi-pitchbend slot="detune"></midi-pitchbend>
+              <midi-note-frequency slot="frequency"></midi-note-frequency>
+            </osc-tile>
+            <!-- a little noise for grit -->
           </envelope-tile>
-        </gain-tile>
-      </aux-send>
+        </filter-tile>
+      </gain-tile>
 
       <!-- noise pad, controlled by O2 knob C1 -->
       <filter-tile>
@@ -57,8 +56,8 @@ audio-out {
         <noise-tile></noise-tile>
       </filter-tile>
 
-      <gain-tile gain="1">
-        <delay-tile time=".01">
+      <gain-tile gain=".5">
+        <delay-tile time=".1">
           <aux-return bus="delay"></aux-return>
         </delay-tile>
       </gain>

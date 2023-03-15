@@ -1,4 +1,5 @@
-import { context, BaseTile } from "./lib/base-tile.js";
+import context from "./lib/audio-context.js";
+import { BaseTile } from "./lib/base-tile.js";
 
 class NoiseTile extends BaseTile {
   constructor() {

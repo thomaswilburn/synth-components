@@ -1,4 +1,5 @@
-import { context, BaseTile } from "./lib/base-tile.js";
+import context from "./lib/audio-context.js";
+import { BaseTile } from "./lib/base-tile.js";
 
 class AmpTile extends BaseTile {
 
@@ -9,8 +10,9 @@ class AmpTile extends BaseTile {
     this.audioNode = new GainNode(context);
   }
 
-  static observedAttributes = ["gain"];
+  static observedAttributes = [...BaseTile.observedAttributes, "gain"];
   attributeChangedCallback(attr, was, value) {
+    super.attributeChangedCallback(attr, was, value);
     switch (attr) {
       case "gain":
         this.audioNode.gain.value = value;

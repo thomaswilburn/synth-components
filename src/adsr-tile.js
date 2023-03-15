@@ -1,4 +1,5 @@
-import { context, BaseTile } from "./lib/base-tile.js";
+import context from "./lib/audio-context.js";
+import { BaseTile } from "./lib/base-tile.js";
 import { EnvelopeNode } from "./lib/envelope-node.js";
 import { midi } from "./lib/midi.js";
 
@@ -18,6 +19,7 @@ export class ADSRTile extends BaseTile {
   }
 
   static observedAttributes = [
+    ...BaseTile.observedAttributes,
     "initial",
     "peak",
     "sustain",
@@ -28,6 +30,7 @@ export class ADSRTile extends BaseTile {
   ];
 
   attributeChangedCallback(attr, was, value) {
+    super.attributeChangedCallback(attr, was, value);
     switch (attr) {
       case "initial":
       case "peak":

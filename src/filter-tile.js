@@ -1,4 +1,5 @@
-import { context, BaseTile } from "./lib/base-tile.js";
+import context from "./lib/audio-context.js";
+import { BaseTile } from "./lib/base-tile.js";
 
 class FilterTile extends BaseTile {
 
@@ -10,8 +11,9 @@ class FilterTile extends BaseTile {
     this.audioNode.frequency.value = 0;
   }
 
-  static observedAttributes = ["type", "frequency"];
+  static observedAttributes = [...BaseTile.observedAttributes, "type", "frequency"];
   attributeChangedCallback(attr, was, value) {
+    super.attributeChangedCallback(attr, was, value);
     switch (attr) {
       case "type":
         this.audioNode.type = value;
