@@ -21,20 +21,40 @@ audio-out {
   <body>
 
     <audio-out>
-      <gain-tile gain="0">
-        <adsr-tile decay=".2" sustain=".3" release=".5" slot="gain">
-        </adsr-tile>
-        <osc-tile frequency=220 wavetype="triangle"></osc-tile>
+
+      <!-- monophonic keyboard synth -->
+      <gain-tile gain="0"> 
+        <!-- set volume from the O2 volume slider -->
+        <midi-vca slot="gain" midicontroller="24" value="1"></midi-vca>
+        <envelope-tile attack="0" decay=".05" sustain=".4" release=".5">
+        <!-- envelope automatically cues on MIDI channel 0 -->
+          <!-- filter, controlled by O2 knob C2 -->
+          <filter-tile type="bandpass">
+            <midi-vca slot="frequency" value="800" min="100" max="1600" midicontroller="17"></midi-vca>
+            <!-- actual oscillator -->
+            <osc-tile wavetype="sawtooth">
+              <!-- pitch and frequency set from keyboard -->
+              <midi-pitchbend slot="detune"></midi-pitchbend>
+              <midi-note-frequency slot="frequency"></midi-note-frequency>
+            </osc-tile>
+          </filter-tile>
+        </envelope-tile>
       </gain-tile>
-      <filter-tile frequency="180">
+
+      <!-- noise pad, controlled by O2 knob C1 -->
+      <filter-tile>
+        <midi-vca slot="frequency" midicontroller="16" min="120" max="400" value="140"></midi-vca>
         <noise-tile></noise-tile>
       </filter-tile>
+      
+      <!-- additional noise pad, oscillating filter (engine hum) -->
       <filter-tile frequency="120">
         <gain-tile gain="20" slot="frequency">
           <osc-tile frequency=".73"></osc-tile>
         </gain-tile>
         <noise-tile></noise-tile>
       </filter-tile>
+
     </audio-out>
 
     <script type="module">
@@ -44,6 +64,8 @@ audio-out {
       import "./src/noise-tile.js";
       import "./src/filter-tile.js";
       import "./src/adsr-tile.js";
+      import "./src/midi-tiles.js";
+      import "./src/delay-tile.js";
     </script>
   </body>
 </html>

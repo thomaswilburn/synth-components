@@ -40,9 +40,8 @@ Additionally, there are some tiles provided that incorporate common synth patch 
 Notes/To-do
 -----------
 
-* Add a constant source node
-* Build out the aux sends and returns
-* Add MIDI support
+* Add a comprehensive voice node
+  - supports detune, pitchbend, envelope, all-in-one
 * Add utility nodes
   - LFO with a custom range, not just -1 to 1
   - Sample playback

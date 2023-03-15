@@ -1,18 +1,23 @@
 import { context, BaseTile } from "./lib/base-tile.js";
+import { midi } from "./lib/midi.js";
 
 class AudioOut extends BaseTile {
   static template = `
 <fieldset>
   <legend>Synthesizer</legend>
-  <button class="resume">Start audio</button>
+  <button as="resume">Start audio</button>
+  <button as="midi">Start MIDI</button>
   <slot></slot>
 </fieldset>
   `
 
+  static bindMethods = ["whenResumed"];
+
   constructor() {
     super();
     this.audioNode = context.destination;
-    this.shadowRoot.querySelector(".resume").addEventListener("click", this.whenResumed.bind(this));
+    this.elements.resume.addEventListener("click", this.whenResumed);
+    this.elements.midi.addEventListener("click", () => midi.getAccess());
   }
 
   whenResumed() {

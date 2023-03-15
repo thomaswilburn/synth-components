@@ -1,19 +1,19 @@
 import { context, BaseTile } from "./lib/base-tile.js";
 
 class FilterTile extends BaseTile {
-  static template = `<slot></slot>`;
 
   static autoParamSlots = ["frequency", "Q"];
 
   constructor() {
     super();
     this.audioNode = new BiquadFilterNode(context);
+    this.audioNode.frequency.value = 0;
   }
 
-  static observedAttributes = ["filtertype", "frequency"];
+  static observedAttributes = ["type", "frequency"];
   attributeChangedCallback(attr, was, value) {
     switch (attr) {
-      case "filtertype":
+      case "type":
         this.audioNode.type = value;
         break;
 

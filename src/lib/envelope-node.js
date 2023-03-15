@@ -29,8 +29,6 @@ export class EnvelopeNode {
     var now = context.currentTime;
     var { offset } = this.constant;
     offset.cancelScheduledValues(0);
-    offset.setValueAtTime(this.initial, now);
-    console.log(offset.value);
     offset.linearRampToValueAtTime(this.peak, now + this.attack);
     offset.setTargetAtTime(this.sustain, now + this.attack, this.decay);
   }

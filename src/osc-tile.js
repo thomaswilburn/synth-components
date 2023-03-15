@@ -1,11 +1,12 @@
 import { context, BaseTile } from "./lib/base-tile.js";
 
 class OscTile extends BaseTile {
-  static autoParamSlots = ["frequency"];
+  static autoParamSlots = ["frequency", "detune"];
 
   constructor() {
     super();
     this.audioNode = new OscillatorNode(context);
+    this.audioNode.frequency.value = 0;
     this.audioNode.start();
   }
 
