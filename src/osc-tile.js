@@ -1,7 +1,7 @@
 import context from "./lib/audio-context.js";
 import { BaseTile } from "./lib/base-tile.js";
 
-class OscTile extends BaseTile {
+export class OscTile extends BaseTile {
   static autoParamSlots = ["frequency", "detune"];
 
   constructor() {

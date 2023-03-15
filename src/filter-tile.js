@@ -1,7 +1,7 @@
 import context from "./lib/audio-context.js";
 import { BaseTile } from "./lib/base-tile.js";
 
-class FilterTile extends BaseTile {
+export class FilterTile extends BaseTile {
 
   static autoParamSlots = ["frequency", "Q"];
 

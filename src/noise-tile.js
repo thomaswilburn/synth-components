@@ -1,7 +1,7 @@
 import context from "./lib/audio-context.js";
 import { BaseTile } from "./lib/base-tile.js";
 
-class NoiseTile extends BaseTile {
+export class NoiseTile extends BaseTile {
   constructor() {
     super();
     var { sampleRate } = context;

@@ -2,7 +2,7 @@ import context from "./lib/audio-context.js";
 import { BaseTile } from "./lib/base-tile.js";
 import { midi } from "./lib/midi.js";
 
-class AudioOut extends BaseTile {
+export class AudioOut extends BaseTile {
   static template = `
 <fieldset>
   <legend>Synthesizer</legend>

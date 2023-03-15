@@ -2,7 +2,7 @@ import { midi } from "./lib/midi.js";
 import context from "./lib/audio-context.js";
 import { BaseTile } from "./lib/base-tile.js";
 
-class MidiVCA extends BaseTile {
+export class MidiVCA extends BaseTile {
 
   midiChannel = 0;
   midiController = 0;
