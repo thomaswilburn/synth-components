@@ -10,4 +10,4 @@ export * from "./osc-tile.js";
 export * from "./synth-voice.js";
 export * from "./lib/base-tile.js";
 export * from "./lib/envelope-node.js";
-export * as context from "./lib/audio-context.js";
+export { default as context } from "./lib/audio-context.js";
