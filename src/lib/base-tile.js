@@ -53,8 +53,10 @@ export class BaseTile extends HTMLElement {
   }
 
   connectAudioTo(destination) {
-    if (this.#connectedTo == destination) return;
-    this.audioNode.disconnect(this.#connectedTo);
+    if (this.#connectedTo) {
+      if (this.#connectedTo == destination) return;
+      this.audioNode.disconnect(this.#connectedTo);
+    }
     this.audioNode.connect(destination);
     this.#connectedTo = destination;
   }
