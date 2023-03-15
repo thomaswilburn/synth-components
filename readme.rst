@@ -17,9 +17,9 @@ A set of components for generating synthesizer patches, similar to a modular syn
 In addition to mapping output through audio inputs and outputs, you can also assign a signal to a node's AudioParams using slots. This code will modulate the filter frequency by 50Hz every second::
 
     <filter-tile frequency=200>
-      <amp-tile gain=50 slot=frequency>
+      <gain-tile gain=50 slot=frequency>
         <osc-tile frequency=1></osc-tile>
-      </amp-tile>
+      </gain-tile>
     </filter-tile>
 
 Rack Tiles

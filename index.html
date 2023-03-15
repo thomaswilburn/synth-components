@@ -3,20 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title>Synth Components Demo</title>
-    <style>
-:root {
-  font-family: sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-audio-out {
-  max-width: 400px;
-  margin: auto;
-}
-    </style>
   </head>
   <body>
 
@@ -37,7 +23,6 @@ audio-out {
               <midi-pitchbend slot="detune"></midi-pitchbend>
               <midi-note-frequency slot="frequency"></midi-note-frequency>
             </osc-tile>
-            <!-- a little noise for grit -->
           </envelope-tile>
         </filter-tile>
       </gain-tile>
@@ -49,7 +34,7 @@ audio-out {
         </delay-tile>
       </gain>
 
-      <!-- noise pad, controlled by O2 knob C1 -->
+      <!-- ambient noise, controlled by O2 knob C1 -->
       <filter-tile>
         <midi-vca slot="frequency" midicontroller="16" min="120" max="400" value="140"></midi-vca>
         <noise-tile></noise-tile>
