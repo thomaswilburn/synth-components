@@ -50,9 +50,7 @@ export class ADSRTile extends BaseTile {
     var { channel } = e.data;
     if (channel != this.midiChannel) return;
     this.#keyCount++;
-    // frequency has to be set using a message elsewhere
-    // we should therefore delay start slightly so that can take effect
-    setTimeout(() => this.envelope.start(), 0);
+    this.envelope.start();
   }
 
   whenNoteOff(e) {

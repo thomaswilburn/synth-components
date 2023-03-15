@@ -32,7 +32,7 @@ audio-out {
           <!-- envelope automatically cues on MIDI channel 0 -->
           <envelope-tile attack="0" decay=".05" sustain=".4" release=".5">
             <!-- actual oscillator -->
-            <osc-tile wavetype="sawtooth">
+            <osc-tile waveform="sawtooth">
               <!-- pitch and frequency set from keyboard -->
               <midi-pitchbend slot="detune"></midi-pitchbend>
               <midi-note-frequency slot="frequency"></midi-note-frequency>
@@ -41,6 +41,13 @@ audio-out {
           </envelope-tile>
         </filter-tile>
       </gain-tile>
+
+      <!-- synclavier echo -->
+      <gain-tile gain=".5">
+        <delay-tile time=".05">
+          <aux-return bus="delay"></aux-return>
+        </delay-tile>
+      </gain>
 
       <!-- noise pad, controlled by O2 knob C1 -->
       <filter-tile>
@@ -53,27 +60,37 @@ audio-out {
         <gain-tile gain="20" slot="frequency">
           <osc-tile frequency=".73"></osc-tile>
         </gain-tile>
-        <noise-tile></noise-tile>
+        <noise-tile send="noise"></noise-tile>
       </filter-tile>
 
-      <gain-tile gain=".5">
-        <delay-tile time=".1">
-          <aux-return bus="delay"></aux-return>
+      <gain-tile gain=".5" send="pad">
+        <synth-voice waveform="sine" attack="1" release="2"></synth-voice>
+      </gain-tile>
+
+      <!-- add a little chorus to our sine pad -->
+      <!-- <gain-tile gain=".2"> -->
+        <delay-tile time=".01">
+          <gain-tile gain=".01" slot="delayTime">
+            <osc-tile frequency=".1"></osc-tile>
+          </gain-tile>
+          <aux-return bus="pad"></aux-return>
         </delay-tile>
-      </gain>
+      <!-- </gain-tile> -->
+      
 
     </audio-out>
 
     <script type="module">
-      import "./src/audio-out.js";
-      import "./src/gain-tile.js";
-      import "./src/osc-tile.js";
-      import "./src/noise-tile.js";
-      import "./src/filter-tile.js";
       import "./src/adsr-tile.js";
-      import "./src/midi-tiles.js";
-      import "./src/delay-tile.js";
+      import "./src/audio-out.js";
       import "./src/aux-bus.js";
+      import "./src/delay-tile.js";
+      import "./src/filter-tile.js";
+      import "./src/gain-tile.js";
+      import "./src/midi-tiles.js";
+      import "./src/noise-tile.js";
+      import "./src/osc-tile.js";
+      import "./src/synth-voice.js";
     </script>
   </body>
 </html>

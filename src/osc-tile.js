@@ -11,11 +11,11 @@ class OscTile extends BaseTile {
     this.audioNode.start();
   }
 
-  static observedAttributes = [...BaseTile.observedAttributes, "wavetype", "frequency"];
+  static observedAttributes = [...BaseTile.observedAttributes, "waveform", "frequency"];
   attributeChangedCallback(attr, was, value) {
     super.attributeChangedCallback(attr, was, value);
     switch (attr) {
-      case "wavetype":
+      case "waveform":
         this.audioNode.type = value;
         break;
 
