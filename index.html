@@ -68,14 +68,12 @@ audio-out {
       </gain-tile>
 
       <!-- add a little chorus to our sine pad -->
-      <!-- <gain-tile gain=".2"> -->
-        <delay-tile time=".01">
-          <gain-tile gain=".01" slot="delayTime">
-            <osc-tile frequency=".1"></osc-tile>
-          </gain-tile>
-          <aux-return bus="pad"></aux-return>
-        </delay-tile>
-      <!-- </gain-tile> -->
+      <delay-tile time=".01">
+        <gain-tile gain=".01" slot="delayTime">
+          <osc-tile frequency=".1"></osc-tile>
+        </gain-tile>
+        <aux-return bus="pad"></aux-return>
+      </delay-tile>
       
 
     </audio-out>
