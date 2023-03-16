@@ -48,8 +48,10 @@
         <source-noise send="noise"></source-noise>
       </fx-filter>
 
-      <fx-gain gain=".5" send="pad">
-        <source-monosynth waveform="sine" attack="1" release="2"></source-monosynth>
+      <fx-gain gain=".2" send="pad">
+        <fx-distortion drive=".2">
+          <source-monosynth waveform="sine" attack="1" release="2"></source-monosynth>
+        </fx-distortion>
       </fx-gain>
 
       <!-- add a little chorus to our sine pad -->
