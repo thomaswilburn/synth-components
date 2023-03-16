@@ -4,7 +4,7 @@ import { EnvelopeNode } from "./lib/envelope-node.js";
 import { midi } from "./lib/midi.js";
 
 // pure parameter control, useful for slotting envelopes into other things
-export class ADSRTile extends BaseTile {
+export class MidiADSR extends BaseTile {
   midiChannel = 0;
   #keyCount = 0;
 
@@ -63,10 +63,10 @@ export class ADSRTile extends BaseTile {
   }
 }
 
-window.customElements.define("adsr-tile", ADSRTile);
+window.customElements.define("midi-adsr", MidiADSR);
 
 // actual ADSR gain envelope, covers the common use pattern of gain-tile > adsr-tile[slot=gain]
-export class EnvelopeTile extends ADSRTile {
+export class MidiEnvelope extends MidiADSR {
   constructor() {
     super();
     this.audioNode = new GainNode(context, { gain: 0 });
@@ -79,4 +79,4 @@ export class EnvelopeTile extends ADSRTile {
   }
 }
 
-window.customElements.define("envelope-tile", EnvelopeTile);
+window.customElements.define("midi-envelope", MidiEnvelope);

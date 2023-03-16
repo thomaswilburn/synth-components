@@ -1,7 +1,7 @@
 import context from "./lib/audio-context.js";
 import { BaseTile } from "./lib/base-tile.js";
 
-export class DelayTile extends BaseTile {
+export class FxDelay extends BaseTile {
 
   static autoParamSlots = ["delayTime"];
   
@@ -19,4 +19,4 @@ export class DelayTile extends BaseTile {
   }
 }
 
-window.customElements.define("delay-tile", DelayTile);
+window.customElements.define("fx-delay", FxDelay);

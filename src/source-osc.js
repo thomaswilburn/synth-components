@@ -1,21 +1,21 @@
 import context from "./lib/audio-context.js";
 import { BaseTile } from "./lib/base-tile.js";
 
-export class FilterTile extends BaseTile {
-
-  static autoParamSlots = ["frequency", "Q"];
+export class SourceOscillator extends BaseTile {
+  static autoParamSlots = ["frequency", "detune"];
 
   constructor() {
     super();
-    this.audioNode = new BiquadFilterNode(context);
+    this.audioNode = new OscillatorNode(context);
     this.audioNode.frequency.value = 0;
+    this.audioNode.start();
   }
 
-  static observedAttributes = [...BaseTile.observedAttributes, "type", "frequency"];
+  static observedAttributes = [...BaseTile.observedAttributes, "waveform", "frequency"];
   attributeChangedCallback(attr, was, value) {
     super.attributeChangedCallback(attr, was, value);
     switch (attr) {
-      case "type":
+      case "waveform":
         this.audioNode.type = value;
         break;
 
@@ -26,4 +26,4 @@ export class FilterTile extends BaseTile {
   }
 }
 
-window.customElements.define("filter-tile", FilterTile);
+window.customElements.define("source-osc", SourceOscillator);

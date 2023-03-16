@@ -1,10 +1,10 @@
-import { ADSRTile } from "./adsr-tile.js";
+import { MidiADSR } from "./midi-adsr.js";
 import context from "./lib/audio-context.js";
 import { EnvelopeNode } from "./lib/envelope-node.js";
 import { midi } from "./lib/midi.js";
 
 // full synth voice
-export class SynthVoice extends ADSRTile {
+export class SourceMonosynth extends MidiADSR {
 
   constructor() {
     super();
@@ -20,7 +20,7 @@ export class SynthVoice extends ADSRTile {
     midi.addEventListener("noteoff", this.whenNoteOff);
   }
 
-  static observedAttributes = [...ADSRTile.observedAttributes, "waveform"];
+  static observedAttributes = [...MidiADSR.observedAttributes, "waveform"];
   attributeChangedCallback(attr, was, value) {
     super.attributeChangedCallback(attr, was, value);
     switch (attr) {
@@ -37,4 +37,4 @@ export class SynthVoice extends ADSRTile {
   }
 }
 
-window.customElements.define("synth-voice", SynthVoice);
+window.customElements.define("source-monosynth", SourceMonosynth);

@@ -1,7 +1,7 @@
 import context from "./lib/audio-context.js";
 import { BaseTile } from "./lib/base-tile.js";
 
-export class AmpTile extends BaseTile {
+export class FxGain extends BaseTile {
 
   static autoParamSlots = ["gain"]
 
@@ -21,4 +21,4 @@ export class AmpTile extends BaseTile {
 
 }
 
-window.customElements.define("gain-tile", AmpTile);
+window.customElements.define("fx-gain", FxGain);

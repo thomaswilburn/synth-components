@@ -9,56 +9,56 @@
     <audio-out>
 
       <!-- monophonic keyboard synth -->
-      <gain-tile gain="0" send="delay"> 
+      <fx-gain gain="0" send="delay"> 
         <!-- set volume from the O2 volume slider -->
         <midi-vca slot="gain" midicontroller="24" value="1"></midi-vca>
         <!-- filter, controlled by O2 knob C2 -->
-        <filter-tile type="bandpass">
+        <fx-filter type="bandpass">
           <midi-vca slot="frequency" value="800" min="100" max="1600" midicontroller="17"></midi-vca>
           <!-- envelope automatically cues on MIDI channel 0 -->
-          <envelope-tile attack="0" decay=".05" sustain=".4" release=".5">
+          <midi-envelope attack="0" decay=".05" sustain=".4" release=".5">
             <!-- actual oscillator -->
-            <osc-tile waveform="sawtooth">
+            <source-osc waveform="triangle">
               <!-- pitch and frequency set from keyboard -->
               <midi-pitchbend slot="detune"></midi-pitchbend>
               <midi-note-frequency slot="frequency"></midi-note-frequency>
-            </osc-tile>
-          </envelope-tile>
-        </filter-tile>
-      </gain-tile>
+            </source-osc>
+          </midi-envelope>
+        </fx-filter>
+      </fx-gain>
 
       <!-- synclavier echo -->
-      <gain-tile gain=".5">
-        <delay-tile time=".05">
+      <fx-gain gain=".5">
+        <fx-delay time=".05">
           <aux-return bus="delay"></aux-return>
-        </delay-tile>
+        </fx-delay>
       </gain>
 
       <!-- ambient noise, controlled by O2 knob C1 -->
-      <filter-tile>
+      <fx-filter>
         <midi-vca slot="frequency" midicontroller="16" min="120" max="400" value="140"></midi-vca>
-        <noise-tile></noise-tile>
-      </filter-tile>
+        <source-noise></source-noise>
+      </fx-filter>
       
       <!-- additional noise pad, oscillating filter (engine hum) -->
-      <filter-tile frequency="120">
-        <gain-tile gain="20" slot="frequency">
-          <osc-tile frequency=".73"></osc-tile>
-        </gain-tile>
-        <noise-tile send="noise"></noise-tile>
-      </filter-tile>
+      <fx-filter frequency="120">
+        <fx-gain gain="20" slot="frequency">
+          <source-osc frequency=".73"></source-osc>
+        </fx-gain>
+        <source-noise send="noise"></source-noise>
+      </fx-filter>
 
-      <gain-tile gain=".5" send="pad">
-        <synth-voice waveform="sine" attack="1" release="2"></synth-voice>
-      </gain-tile>
+      <fx-gain gain=".5" send="pad">
+        <source-monosynth waveform="sine" attack="1" release="2"></source-monosynth>
+      </fx-gain>
 
       <!-- add a little chorus to our sine pad -->
-      <delay-tile time=".01">
-        <gain-tile gain=".01" slot="delayTime">
-          <osc-tile frequency=".1"></osc-tile>
-        </gain-tile>
+      <fx-delay time=".01">
+        <fx-gain gain=".01" slot="delayTime">
+          <source-osc frequency=".1"></source-osc>
+        </fx-gain>
         <aux-return bus="pad"></aux-return>
-      </delay-tile>
+      </fx-delay>
       
 
     </audio-out>
