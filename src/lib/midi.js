@@ -7,13 +7,13 @@ export class MIDITargetEvent extends Event {
   }
 }
 
-const NOTE_OFF = 8;
-const NOTE_ON = 9;
-const AFTERTOUCH = 10;
-const CONTROL_CHANGE = 11;
-const PROGRAM_CHANGE = 12;
-const CHANNEL_AFTERTOUCH = 13;
-const PITCH_BEND = 14;
+export const NOTE_OFF = 8;
+export const NOTE_ON = 9;
+export const AFTERTOUCH = 10;
+export const CONTROL_CHANGE = 11;
+export const PROGRAM_CHANGE = 12;
+export const CHANNEL_AFTERTOUCH = 13;
+export const PITCH_BEND = 14;
 
 export class MIDITarget extends EventTarget {
 
@@ -69,6 +69,12 @@ export class MIDITarget extends EventTarget {
 
     }
 
+  }
+
+  fake(message, channel, b, c) {
+    var a = (message << 4) + channel;
+    var e = { data: [a, b, c] };
+    this.onMIDI(e);
   }
 
   sendMIDI(message, channel = 0, b = 0, c = 0) {
